@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% load staticfiles %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap-3.3.7.min.css' %}">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div class="head">
+    <div class="logo"><a href="{% url 'homepage' %}">博客系统</a></div>
+    {% if request.user.is_authenticated %}
+        <div id="logout">
+            <a class="userName">{{ request.user.username }}</a>
+            <a class="logout" href="{% url 'logout' %}">登出</a>
+            &nbsp;&nbsp;|&nbsp;<a href="{% url 'blog:release' %}">发表</a>
+        </div>
+    {% else %}
+        <div class="nav">
+            <ul>
+                <li id="initLogin">登录</li>
+                <li id="initRegist">注册</li>
+            </ul>
+        </div>
+    {% endif %}
+
+</div>
+
+<div class="userInfo">
+    <a href="{% url 'operator:userInfo' %}" class="toUserInfo">进入个人中心</a>
+</div>
+<div class="mask"></div>
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="lg login">
+        <div id="close" class="closed">x</div>
+        <div>用户名<input id="user" class="user" type="text" name="user"></div>
+        <div>密码:&nbsp;&nbsp;<input id="password" class="pword" type="password" name="password"></div>
+        {#        <input id="login" type="button" value="登录"><br>#}
+        <input id="login" type="submit" value="登录">
+        <p id="login_error"></p>
+    </div>
+</form>
+
+<form action="{% url 'regist' %}" method="post">
+    {% csrf_token %}
+    <div class="lg regist">
+        <div id="close" class="closed">x</div>
+        <div><input id="ruser" class="user" type="text" name="ruser" placeholder="请输入用户名"></div>
+        <div><input id="rpassword" class="pword" type="password" name="rpassword" placeholder="请输入密码"></div>
+        <div><input id="rpassword2" class="pword" type="password" name="rpassword2" placeholder="再次输入密码"></div>
+        <input id="regist" type="button" value="注册"><br>
+        <p id="regist_error"></p>
+    </div>
+</form>
+
+{% block body %}{% endblock %}
+{% block js %}{% endblock %}
+<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-3.3.7.min.js' %}"></script>
+<script src="{% static 'js/getCookie.js' %}"></script>
+<script src="{% static 'js/textareaAutoHeight.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script>
+    function login_ajax() {
+        $('#login').click(function () {
+            var user = $('#user').val();
+            var pwd = $('#password').val();
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                cache: false,
+                url: '{% url 'login' %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'user': user,
+                    'password': pwd
+                },
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken)
+                },
+                success: function (ret) {
+                    if (ret.status == 'ok') {
+                        window.location.reload()
+                    } else {
+                        console.log(ret.msg);
+                        $('#login_error').text(ret.msg)
+                    }
+
+                }
+            });
+        });
+    }
+
+    function regist_ajax() {
+        $('#regist').click(function () {
+            var user = $('#ruser').val();
+            var pwd = $('#rpassword').val();
+            var pwd2 = $('#rpassword2').val();
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                url: '{% url 'regist' %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {'ruser': user, 'rpassword': pwd, 'rpassword2': pwd2},
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken)
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == 'success') {
+                        $('#ruser').val("");
+                        $('#rpassword').val("");
+                        $('#rpassword2').val("");
+                        console.log(data.msg)
+                        $('#regist_error').html(data.msg)
+                    } else if (data.status == 'passError') {
+                        $('#regist_error').html(data.msg)
+                    } else {
+                        $('#regist_error').html(data.msg)
+                    }
+
+                }
+            })
+        });
+    }
+
+    function userInfoDisplay() {
+        $('.logo').click(function () {
+            var top = $(this).offset().top;
+            var left = $(this).offset().left;
+            $(this).css({
+                'box-shadow': 'none',
+                'margin-top': top + 5 + 'px',
+                'margin-left': left + 5 + 'px'
+            })
+        });
+
+        var s = null;
+
+        $('.userName').hover(function () {
+            $('.userInfo').css({
+                'display': 'block'
+            });
+            clearTimeout(s);
+        });
+
+        $('.userInfo').hover(function () {
+            $(this).css({
+                'display': 'block'
+            });
+            clearTimeout(s);
+        });
+
+        $('.toUserInfo').hover(function(){
+            $('.userInfo').css({
+                'display': 'block'
+            });
+            clearTimeout(s)
+        });
+
+        $('.userName').mouseout(function () {
+            s = setTimeout(function () {
+                $('.userInfo').css({
+                    'display': 'none'
+                });
+            }, 500);
+        })
+
+        $('.userInfo').mouseout(function () {
+            s = setTimeout(function () {
+                $('.userInfo').css({
+                    'display': 'none'
+                });
+            }, 500);
+        })
+
+    }
+
+    $(function () {
+        login_ajax();
+        regist_ajax();
+        userInfoDisplay();
+    });
+</script>
+
+</body>
+</html>

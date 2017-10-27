@@ -1,0 +1,182 @@
+*{
+    padding: 0;
+    margin:0;
+    position: relative;
+}
+
+body{
+    padding-bottom: 30px;
+}
+
+.head{
+    width: 100%;
+    height: 50px;
+    background: #ccc;
+}
+
+.head .logo{
+    font-family: Arial;
+    float: left;
+    margin-top: 11px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 100px;
+    box-shadow: 5px 5px 5px #000;
+}
+
+.logo > a{
+    text-decoration: none;
+    color: black;
+}
+
+.head .nav{
+    width: auto;
+    margin-right: 100px;
+    height: 50px;
+}
+
+.head .nav ul{
+    width: auto;
+    float: right;
+    height: 50px;
+}
+
+.head .nav ul li{
+    text-align: center;
+    list-style: none;
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+}
+
+.head .nav ul li:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.body{
+    margin:0 80px;
+}
+
+.mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 10;
+    background: rgba(0,0,0,0.2);
+    display: none;
+}
+
+.lg{
+    width: 400px;
+    height: 200px;
+    position: fixed;
+    z-index: 11;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    margin:auto;
+    background: #fff;
+    text-align: center;
+    display: none;
+}
+
+.lg > .closed{
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-right: -15px;
+    background: white;
+    font-size: 18px;
+    font-family: Arial;
+    color: black;
+    border-radius: 50%;
+    line-height: 30px;
+}
+
+
+.closed:hover{
+    background: #999;
+    cursor: pointer;
+    color: white;
+}
+
+.login > .input{
+
+}
+
+#logout{
+    width: auto;
+    margin-right: 100px;
+    height: 50px;
+    float: right;
+    line-height: 50px;
+}
+
+#login_error,#regist_error{
+    color: red;
+}
+
+.page{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.page p{
+    display: inline;
+}
+
+.body a{
+    text-decoration: none;
+}
+
+.collects{
+    width: 55px;
+    height: 55px;
+    float: left;
+    background: saddlebrown;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.collects p{
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+
+.userName:hover{
+    cursor: pointer;
+}
+
+.userInfo{
+    width: 200px;
+    height:150px;
+    position: absolute;
+    right:177px;
+    background: #f4f4f4;
+    display: none;
+    z-index:2;
+}
+
+
+.toUserInfo{
+    display: block;
+    width: 150px;
+    height: 20px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    text-align: center;
+    margin:110px auto 0;
+    background: #ffffff;
+    text-decoration: none;
+}
+
+.toUserInfo:hover{
+    text-decoration: none;
+}

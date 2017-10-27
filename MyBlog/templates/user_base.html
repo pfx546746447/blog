@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/userbase.css' %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+{% for users in user %}
+    <div class="top">
+        <a href="{% url 'homepage' %}">返回主页</a>
+        {% if users.img %}
+            <img src="{{ MEDIA_URL }}{{ users.img.url }}" alt="头像">
+        {% else %}
+            <img src="{% static 'media/head.jpg' %}" alt="头像">
+        {% endif %}
+        <a class="edit-img" href="javascript:void(0)">编辑头像</a>
+    </div>
+
+
+    <div class="mask"></div>
+    <form action="{% url 'operator:userInfo' %}" method="post" enctype="multipart/form-data">
+        <div class="edit-imgD">
+            <span class="closeImg">x</span>
+            <a href="javascript:void(0)" class="uploadImg gradient">选择头像<input id="file" name="headImg"
+                                                                               type="file"/></a>
+            <div class="file-text">
+                <span class="fileError"></span>
+                <p class="fileShow"></p>
+            </div>
+            <div class="showImg">
+                <img id="show" src="">
+            </div>
+            <input class="upload" type="submit" value="上傳圖片">
+        </div>
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        {% csrf_token %}
+    </form>
+{% endfor %}
+<div class="main">
+    <div class="left">
+        <ul>
+            <li class="left-item {% if active == 'info' %}left-active{% endif %}"><a href="#">基本信息</a></li>
+            <li class="left-item {% if active == 'collect' %}left-active{% endif %}"><a href="#">我的收藏</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        {% block right %}{% endblock %}
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+<script>
+    /**加载fileName*/
+    function a() {
+        $(".uploadImg").on("change", "input[type='file']", function () {
+            var filePath = $(this).val();
+            if (filePath.indexOf("jpg") != -1 || filePath.indexOf("png") != -1) {
+                $(".fileError").html("").hide();
+                var arr = filePath.split('\\');
+                var fileName = arr[arr.length - 1];
+                $(".fileShow").html(fileName);
+                c()
+            } else {
+                $(".fileShow").html("");
+                $(".fileError").html("您上传文件类型有误！").show();
+                return false
+            }
+        });
+    }
+
+    /**上传图片,检测是否有图片*/
+    function b() {
+        $('.upload').click(function () {
+            var fileName = $('#file').val();
+            if (fileName == "") {
+                $(".fileError").html("您未上传文件！").show();
+                return false
+            }
+        });
+
+
+    }
+
+    /**加载图片界面的开启关闭*/
+    function d() {
+        $('.edit-img').click(function () {
+            $('.mask').show();
+            $('.edit-imgD').show();
+        });
+        $('.closeImg').on('click', function () {
+            $('.mask').hide();
+            $('.edit-imgD').hide();
+        })
+    }
+
+    $(function () {
+        a();
+        b();
+        d();
+    });
+
+    /**加载图片*/
+    function c() {
+        var r = new FileReader();
+        f = document.getElementById('file').files[0];
+        r.readAsDataURL(f);
+        r.onload = function (e) {
+            $('.showImg').css({
+                'display': 'block'
+            });
+            document.getElementById('show').src = this.result;
+        };
+    }
+</script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

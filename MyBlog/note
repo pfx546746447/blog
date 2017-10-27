@@ -1,0 +1,10 @@
+当makemigrations时出现了，HINT: Add or change a related_name argument to the definition for 'blogUser.user_permissions' or 'User.user_permissions'
+        时，需要在settings中重载AUTH_USER_MODEL='appName.modelName'
+
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-3: ordinal not in range(128):
+        添加related_name时报错，需要加verbose_name属性
+
+get和filter区别：get返回一个Objects,filter返回一个QuerySet
+                get返回为空时会报错，filter返回为空时会返回一个空的QuerySet
+
+get() returned more than one Article -- it returned 2!:条件查询数据库时返回多个对象。
