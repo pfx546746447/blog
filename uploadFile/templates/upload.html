@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>REGIST</h1>
+<form method="post" enctype="multipart/form-data" >
+{{uf.as_p}}
+<input type="submit" value="ok"/>
+</form>
+
+{% for img in upload %}
+    <img src="{{ img.img }}">
+{% endfor %}
+</body>
+</html>
