@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include '_head.html' %}
+</head>
+<body>
+<div class="my-header">
+    <div class="logo">
+        <i>Pfx</i>
+        <i>Blog</i>
+    </div>
+    <div id="category">
+        <ul>
+            <li><a href="#">文章</a></li>
+            <li><a href="#">文章</a></li>
+            <li><a href="#">文章</a></li>
+            <li><a href="#">文章</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $(".logo i").hover(function () {
+            $(".logo i").addClass("logohover")
+        });
+        $(".logo i").mouseout(function () {
+            $(".logo i").removeClass("logohover")
+        })
+    })
+</script>
+</body>
+</html>
