@@ -3,6 +3,14 @@
     margin: 0;
 }
 
+body{
+    background: #E6E6FA;
+}
+
+.white{
+    background: #fcfcfc;
+}
+
 .my-header{
     width: 100%;
     height: 70px;
@@ -62,4 +70,104 @@
 
 #category ul li a:hover{
     color: #9d9d9d;
+}
+
+#my-body{
+    padding:0 300px;
+}
+
+.my-left,.my-right,.my-content{
+    position: relative;
+    float: left;
+    min-height: 300px;
+}
+
+.my-left{
+    width: 280px;
+    margin-left: -100%;
+    left: -290px;
+}
+
+.my-right{
+    width: 280px;
+    margin-left: -290px;
+    right: -300px;
+    background: #c0c0c0;
+}
+
+.block{
+    box-shadow: 2px 2px 2px 0 #9d9d9d
+}
+
+.my-content{
+    width: 100%;
+    box-shadow: 0 2px 2px 0 #9d9d9d;
+    background: white;
+    margin-top: 20px;
+}
+
+.left-main{
+    width: 280px;
+    min-height: 300px;
+    position:relative;
+}
+
+.my-clock{
+    width: 280px;
+    height: 70px;
+    position: relative;
+    top:20px;
+}
+
+.my-clock embed{
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+}
+
+.my-image{
+    position: absolute;
+    top:100px;
+    margin:0 auto;
+    width: 280px;
+    text-align: center;
+}
+
+.my-image img{
+    margin-top: 10px;
+}
+
+.my-image .my-name{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.my-image > hr{
+    padding: 0 20px;
+    background: black;
+}
+
+.my-a{
+    display: inline-block;
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+.my-a:hover{
+    text-decoration: none;
+    color: #3c3c3c;
+}
+
+.my-a > span{
+    display: block;
+}
+
+.my-hor-line{
+    height: 30px;
+    width: 1px;
+    background: #8c8c8c;
+    display: inline-block;
+    margin:0 15px;
 }

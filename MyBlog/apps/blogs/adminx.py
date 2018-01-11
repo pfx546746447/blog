@@ -12,4 +12,9 @@ class blogAdmin(object):
     style_fields = {"body": "ueditor"}
 
 
+class tagAdmin(object):
+    pass
+
+
 xadmin.site.register(Blog, blogAdmin)
+xadmin.site.register(Tags, tagAdmin)

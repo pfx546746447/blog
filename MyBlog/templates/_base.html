@@ -6,7 +6,7 @@
     {% include '_head.html' %}
 </head>
 <body>
-<div class="my-header">
+<div class="my-header white">
     <div class="logo">
         <i>Pfx</i>
         <i>Blog</i>
@@ -19,8 +19,21 @@
             <li><a href="#">文章</a></li>
         </ul>
     </div>
-
 </div>
+<div id="my-body">
+    <div class="my-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="my-left">
+        {% include '_left.html' %}
+    </div>
+
+    <div class="my-right">
+        <p>asdfasdfasdfasdfasdf</p>
+    </div>
+</div>
+
 
 <script>
     $(function () {
