@@ -1,0 +1,46 @@
+.my-center{
+    position: relative;
+    height: auto;
+}
+
+.my-blog{
+    padding:10px;
+    margin-bottom: 30px;
+}
+
+
+.my-pagination{
+    width: 100%;
+    margin:0 auto 40px;
+    text-align: center;
+}
+
+.page-border{
+    padding: 0 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.blog-type{
+    display: inline-block;
+    background: #002a80;
+    padding: 2px;
+    border-radius: 3px;
+    color: white;
+    margin-right: 10px;
+}
+
+.blog-time{
+    display: inline-block;
+    font-size: 16px;
+    height: 14px;
+    line-height: 14px;
+    margin-left: 5px;
+}
+
+.blog-title{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}

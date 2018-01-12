@@ -2,4 +2,39 @@
 
 {% block content %}
 
+    <div class="my-center">
+        {% for blog in blogs.object_list %}
+            <div class="my-blog block white">
+                <h3 class="blog-title">{{ blog.title }}</h3>
+                <p class="blog-type">原创</p>
+                <i class="glyphicon glyphicon-time"></i><span class="blog-time">{{ blog.add_time|date:"Y-m-d" }}</span>
+            </div>
+        {% endfor %}
+
+
+        <div class="pagination my-pagination">
+            {% if blogs.has_previous %}
+                <a href="?{{ blogs.previous_page_number.querystring }}"
+                   class="prev page-border">&lsaquo;&lsaquo; </a>
+            {% else %}
+                <span class="disabled prev page-border">&lsaquo;&lsaquo; </span>
+            {% endif %}
+            {% for page in blogs.pages %}
+                {% if page %}
+                    {% ifequal page blogs.number %}
+                        <span class="current page-border">{{ page }}</span>
+                    {% else %}
+                        <a href="?{{ page.querystring }}" class="page page-border">{{ page }}</a>
+                    {% endifequal %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+            {% if blogs.has_next %}
+                <a href="?{{ blogs.next_page_number.querystring }}" class="next page-border"> &rsaquo;&rsaquo;</a>
+            {% else %}
+                <span class="disabled next page-border">&rsaquo;&rsaquo;</span>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

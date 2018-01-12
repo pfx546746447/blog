@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url,include
 import xadmin
 from homepage.views import *
+from blogs.models import *
 from django.views.static import serve
 from settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
-    url(r'^$', homepage, name='homepage'),
+
+    url(r'^$',IndexView.as_view(),name='index'),
 
     url(r"^media/(?P<path>.*)$", serve,{"document_root":MEDIA_ROOT}),
 

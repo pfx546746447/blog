@@ -15,6 +15,9 @@ class blogAdmin(object):
 class tagAdmin(object):
     pass
 
+class categoryAdmin(object):
+    pass
 
 xadmin.site.register(Blog, blogAdmin)
 xadmin.site.register(Tags, tagAdmin)
+xadmin.site.register(Category, categoryAdmin)

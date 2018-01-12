@@ -79,13 +79,13 @@ body{
 .my-left,.my-right,.my-content{
     position: relative;
     float: left;
-    min-height: 300px;
 }
 
 .my-left{
     width: 280px;
     margin-left: -100%;
     left: -290px;
+    min-height: 300px;
 }
 
 .my-right{
@@ -93,6 +93,7 @@ body{
     margin-left: -290px;
     right: -300px;
     background: #c0c0c0;
+    min-height: 300px;
 }
 
 .block{
@@ -101,8 +102,6 @@ body{
 
 .my-content{
     width: 100%;
-    box-shadow: 0 2px 2px 0 #9d9d9d;
-    background: white;
     margin-top: 20px;
 }
 
