@@ -13,7 +13,8 @@ from blogs.models import *
 
 class IndexView(View):
     def get(self, request):
-        blogs = Blog.objects.all()
+        blogs = Blog.objects.all().order_by("-add_time")
+
         try:
             page = request.GET.get('page', 1)
 
@@ -24,4 +25,5 @@ class IndexView(View):
 
         p = Paginator(blogs, 10)
         blogs = p.page(page)
+
         return render(request, 'center-blog.html',{"blogs":blogs})

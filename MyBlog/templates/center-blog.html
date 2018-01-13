@@ -5,9 +5,22 @@
     <div class="my-center">
         {% for blog in blogs.object_list %}
             <div class="my-blog block white">
-                <h3 class="blog-title">{{ blog.title }}</h3>
+                <h3 class="blog-title"><a href="#">{{ blog.title }}</a></h3>
                 <p class="blog-type">原创</p>
                 <i class="glyphicon glyphicon-time"></i><span class="blog-time">{{ blog.add_time|date:"Y-m-d" }}</span>
+                <i class="glyphicon glyphicon-list-alt" style="margin-left: 10px;margin-right: 5px"></i>
+                {% for category in blog.category.all %}
+                    <span class="blog-span">{{ category.name }}</span>
+                {% endfor %}
+                {# 将html语言转译成正常文本#}
+{#                {% autoescape off %}#}
+                    <p>{{ blog.body|slice:"0:200"|striptags }}{% if blog.body.length > 200 %}...{% endif %}</p>
+{#                {% endautoescape %}#}
+                <hr>
+                <i class="glyphicon glyphicon-tags" style="margin-right: 5px"></i>
+                {% for tags in blog.tags.all %}
+                    <span class="blog-span">{{ tags.name }}</span>
+                {% endfor %}
             </div>
         {% endfor %}
 
