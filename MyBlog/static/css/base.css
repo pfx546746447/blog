@@ -1,17 +1,17 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-body{
+body {
     background: #E6E6FA;
 }
 
-.white{
+.white {
     background: #fcfcfc;
 }
 
-.my-header{
+.my-header {
     width: 100%;
     height: 70px;
     padding: 0 20px;
@@ -19,76 +19,83 @@ body{
     position: relative;
 }
 
-.logo{
+.logo {
     height: 70px;
-    width:60px;
+    width: 60px;
     display: inline-block;
     margin-bottom: 1px;
     position: absolute;
     left: 20px;
+    text-decoration: none;
+    color: black;
 }
 
-.logo > i{
+.logo:hover{
+    text-decoration: none;
+}
+
+.logo > i {
     display: block;
     height: 35px;
     width: 60px;
     font-size: 24px;
     text-align: center;
+    text-decoration: none;
 }
 
-.logohover{
+.logohover {
     box-shadow: 3px 2px 1px #ccc;
     cursor: pointer;
     color: #9d9d9d;
 }
 
-#category{
+#category {
     display: inline-block;
     height: 70px;
 }
 
-#category ul{
+#category ul {
     margin-left: 100px;
 }
 
-#category ul,#category ul li{
+#category ul, #category ul li {
     height: 70px;
     text-align: center;
     line-height: 70px;
 }
 
-#category ul li{
+#category ul li {
     list-style: none;
     width: 80px;
     float: left;
 }
 
-#category ul li a{
+#category ul li a {
     text-decoration: none;
     color: black;
 }
 
-#category ul li a:hover{
+#category ul li a:hover {
     color: #9d9d9d;
 }
 
-#my-body{
-    padding:0 300px;
+#my-body {
+    padding: 0 300px;
 }
 
-.my-left,.my-right,.my-content{
+.my-left, .my-right, .my-content {
     position: relative;
     float: left;
 }
 
-.my-left{
+.my-left {
     width: 280px;
     margin-left: -100%;
     left: -290px;
     min-height: 300px;
 }
 
-.my-right{
+.my-right {
     width: 280px;
     margin-left: -290px;
     right: -300px;
@@ -96,77 +103,90 @@ body{
     min-height: 300px;
 }
 
-.block{
+.block {
     box-shadow: 2px 2px 2px 0 #9d9d9d
 }
 
-.my-content{
+.my-content {
     width: 100%;
     margin-top: 20px;
 }
 
-.left-main{
+.left-main {
     width: 280px;
     min-height: 300px;
-    position:relative;
+    position: relative;
 }
 
-.my-clock{
+.my-clock {
     width: 280px;
     height: 70px;
     position: relative;
-    top:20px;
+    top: 20px;
 }
 
-.my-clock embed{
+.my-clock embed {
     position: absolute;
     left: 50%;
     margin-left: -80px;
 }
 
-.my-image{
+.my-image {
     position: absolute;
-    top:100px;
-    margin:0 auto;
+    top: 100px;
+    margin: 0 auto;
     width: 280px;
     text-align: center;
 }
 
-.my-image img{
+.my-image img {
     margin-top: 10px;
 }
 
-.my-image .my-name{
+.my-image .my-name {
     margin-top: 10px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
 }
 
-.my-image > hr{
+.my-image > hr {
     padding: 0 20px;
     background: black;
 }
 
-.my-a{
+.my-a {
     display: inline-block;
     text-decoration: none;
     color: #8c8c8c;
 }
 
-.my-a:hover{
+.my-a:hover {
     text-decoration: none;
     color: #3c3c3c;
 }
 
-.my-a > span{
+.my-a > span {
     display: block;
 }
 
-.my-hor-line{
+.my-hor-line {
     height: 30px;
     width: 1px;
     background: #8c8c8c;
     display: inline-block;
-    margin:0 15px;
+    margin: 0 15px;
+}
+
+.desc-div {
+    padding: 20px;
+}
+
+.desc-body{
+    font-size: 16px;
+}
+
+.blog-comments{
+    font-size: 14px;
+    color: #8c8c8c;
 }

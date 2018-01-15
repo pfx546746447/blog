@@ -9,8 +9,6 @@ from blogs.models import *
 # Create your views here.
 
 
-
-
 class IndexView(View):
     def get(self, request):
         blogs = Blog.objects.all().order_by("-add_time")

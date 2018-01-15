@@ -19,6 +19,7 @@ from homepage.views import *
 from blogs.models import *
 from django.views.static import serve
 from settings import MEDIA_ROOT
+from blogs import urls as blog_urls
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -28,4 +29,6 @@ urlpatterns = [
     url(r"^media/(?P<path>.*)$", serve,{"document_root":MEDIA_ROOT}),
 
     url(r'^ueditor/', include('DjangoUeditor.urls')),
+
+    url(r'^blog/',include(blog_urls,namespace="blog")),
 ]

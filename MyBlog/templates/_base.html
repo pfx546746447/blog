@@ -7,13 +7,14 @@
 </head>
 <body>
 <div class="my-header white">
-    <div class="logo">
-        <i>Pfx</i>
-        <i>Blog</i>
-    </div>
+    <a class="logo" href="{% url 'index' %}">
+            <i>Pfx</i>
+            <i>Blog</i>
+
+    </a>
     <div id="category">
         <ul>
-            <li><a href="#">文章</a></li>
+            <li><a href="#">博客</a></li>
             <li><a href="#">文章</a></li>
             <li><a href="#">文章</a></li>
             <li><a href="#">文章</a></li>
@@ -45,5 +46,9 @@
         })
     })
 </script>
+
+{% block js %}
+
+{% endblock %}
 </body>
 </html>
