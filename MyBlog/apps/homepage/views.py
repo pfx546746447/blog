@@ -8,7 +8,6 @@ from blogs.models import *
 
 # Create your views here.
 
-
 class IndexView(View):
     def get(self, request):
         blogs = Blog.objects.all().order_by("-add_time")
@@ -24,4 +23,13 @@ class IndexView(View):
         p = Paginator(blogs, 10)
         blogs = p.page(page)
 
-        return render(request, 'center-blog.html',{"blogs":blogs})
+        blog = Blog.objects.all()
+        category = Category.objects.all()
+        tag = Tags.objects.all()
+
+        return render(request, 'center-blog.html',
+                      {"blogs": blogs,
+                       'blog_num': blog.count(),
+                       'category_num': category.count(),
+                       'tag_num': tag.count(),
+                       'categorys': category})

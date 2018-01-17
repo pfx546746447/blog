@@ -1,0 +1,10 @@
+{% load staticfiles %}
+
+<div class="right-main ">
+    <div class="white block">
+        <p class="category-title">全部分类</p>
+        {% for category in categorys %}
+            <p class="category-list">{{ category.name }}&nbsp;&nbsp;({{ category.blog_set.count }})</p>
+        {% endfor %}
+    </div>
+</div>

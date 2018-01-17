@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^ueditor/', include('DjangoUeditor.urls')),
 
     url(r'^blog/',include(blog_urls,namespace="blog")),
+
 ]

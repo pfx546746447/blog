@@ -11,15 +11,40 @@ from .models import *
 class BlogDescView(View):
     def get(self, request, blogId):
         blog = Blog.objects.get(id=blogId)
-        return render(request, 'blog-desc.html', {"blog": blog})
+        blogs = Blog.objects.all()
+        category = Category.objects.all()
+        tag = Tags.objects.all()
+        return render(request, 'blog-desc.html',
+                      {"blog": blog,
+                       'blog_num': blogs.count(),
+                       'category_num': category.count(),
+                       'tag_num': tag.count(),
+                       'categorys': category})
 
 
 def add_click(request):
-    id = request.POST.get('id','')
+    id = request.POST.get('id', '')
     blog = Blog.objects.get(id=int(id))
-    is_click = request.POST.get('is_click', '')
-    print is_click
-    if is_click == 'true':
-        blog.click += 1
-        blog.save()
+    blog.click += 1
+    blog.save()
     return HttpResponse('{"status":"success"}', content_type="application/json")
+
+
+class ArchiveView(View):
+    def get(self,request):
+        blogs = Blog.objects.all().order_by('-add_time')
+        try:
+            page = request.GET.get('page', 1)
+
+        except PageNotAnInteger:
+            page = 1
+
+        # Provide Paginator with the request object for complete querystring generation
+
+        p = Paginator(blogs, 15)
+        blogs = p.page(page)
+
+        blog = Blog.objects.all()
+        category = Category.objects.all()
+        tag = Tags.objects.all()
+        return render(request,'archive.html',{'blogs':blogs})

@@ -1,0 +1,72 @@
+{% extends '_base.html' %}
+
+{% block title %}归档{% endblock %}
+
+{% block content %}
+
+    <div class="white block">
+        {% regroup blogs.object_list by add_time.year as year_post_group %}
+
+        <ul>
+            {% for year in year_post_group %}
+                <li class="archive-year">{{ year.grouper }} 年
+                    {% regroup year.list by add_time.month as month_post_group %}
+                    <ul class="archive-month">
+                        {% for month in month_post_group %}
+                            <li>{{ month.grouper }} 月
+                                <ul>
+                                    {% for post in month.list %}
+                                        <li class="archive-title"><a
+                                                href="{% url 'blog:blogDesc' post.id %}">{{ post.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% load i18n %}
+    <div class="paginate">
+        {% if blogs.has_previous %}
+            <a href="?{{ blogs.previous_page_number.querystring }}"
+               class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a>
+        {% else %}
+            <span class="disabled">&lsaquo;&lsaquo; {% trans "previous" %}</span>
+        {% endif %}
+        {% for page in blogs.pages %}
+            {% if page %}
+                {% ifequal page blogs.number %}
+                    <span class="current page">{{ page }}</span>
+                {% else %}
+                    <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                {% endifequal %}
+            {% else %}...{% endif %}
+        {% endfor %}
+        {% if blogs.has_next %}
+            <a href="?{{ blogs.next_page_number.querystring }}" class="next">{% trans "next" %} &rsaquo;&rsaquo;</a>
+        {% else %}
+            <span class="disabled">{% trans "next" %} &rsaquo;&rsaquo;</span>
+        {% endif %}
+    </div>
+
+    <script>
+        $(function () {
+{#            $('.archive-year').each(function () {#}
+{#                $(this).click(function () {#}
+{#                    console.log(this);#}
+{#                    console.log("1");#}
+{#                    $(this).children('.archive-month').toggle(1000)#}
+{#                })#}
+{#            });#}
+{#            $('.archive-month').each(function(){#}
+{#                $(this).click(function(){#}
+{#                    $(this).children('.archive-title').toggle(1000)#}
+{#                })#}
+{#            })#}
+        })
+
+    </script>
+{% endblock %}

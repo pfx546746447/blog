@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="img">
+    <li><img src="1.jpg"/></li>
+    <li><img src="2.jpg"/></li>
+    <li><img src="3.jpg"/></li>
+    <li><img src="4.jpg"/></li>
+</ul>
+<ul id="num">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script type="text/javascript">
+    $("#img li").css("display", "none");//初始化隐藏全部的图片
+    $("#img li:eq(0)").css("display", "block");//只显示第一个图片
+    $("#num li").click(function () {//当鼠标经过数字
+        $("#img li").css("display", "none");//隐藏全部的图片
+        $("#img li:eq(" + $(this).index() + ")").css("display", "block");//数字对应的图片显示
+    });
+    </
+    body >
+    < / html >

@@ -2,7 +2,7 @@
 <head>
     {% load staticfiles %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
     {% include '_head.html' %}
 </head>
 <body>
@@ -10,12 +10,11 @@
     <a class="logo" href="{% url 'index' %}">
             <i>Pfx</i>
             <i>Blog</i>
-
     </a>
     <div id="category">
         <ul>
-            <li><a href="#">博客</a></li>
-            <li><a href="#">文章</a></li>
+            <li><a href="{% url 'index' %}">博客</a></li>
+            <li><a href="{% url 'blog:archive' %}">归档</a></li>
             <li><a href="#">文章</a></li>
             <li><a href="#">文章</a></li>
         </ul>
@@ -31,7 +30,7 @@
     </div>
 
     <div class="my-right">
-        <p>asdfasdfasdfasdfasdf</p>
+        {% include '_right.html' %}
     </div>
 </div>
 
