@@ -1,10 +1,26 @@
 {% load staticfiles %}
 
 <div class="right-main ">
-    <div class="white block">
+    <div class="white block pb10">
         <p class="category-title">全部分类</p>
         {% for category in categorys %}
-            <p class="category-list">{{ category.name }}&nbsp;&nbsp;({{ category.blog_set.count }})</p>
+            <p class="category-list"><a href="{% url 'blog:category' category.id %}">{{ category.name }}</a>&nbsp;&nbsp;({{ category.blog_set.count }})</p>
         {% endfor %}
     </div>
+    <div class="white block mt10 pb10">
+        <p class="category-title">标签</p>
+        <div class="tags">
+            {% for tag in tags %}
+                <span class="tag"><a href="#">{{ tag.name }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        $('.tag').each(function(){
+
+        })
+    })
+</script>

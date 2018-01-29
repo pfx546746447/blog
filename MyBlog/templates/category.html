@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block title %}{% if type == 1 %}分类：{% else %}标签：{% endif %}{{ categoryed.name }}{% endblock %}
+
+{% block content %}
+    <div class="block white">
+        <p class="category-title category-h3">{% if type == 1 %}分类：{% else %}标签：{% endif %}{{ categoryed.name }}</p>
+        {% for blog in bloged %}
+            <i class="glyphicon glyphicon-file" style="margin-left: 50px"></i>
+            <div class="category-div">
+                <p>{{ blog.title }}</p>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}

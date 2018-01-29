@@ -32,4 +32,5 @@ class IndexView(View):
                        'blog_num': blog.count(),
                        'category_num': category.count(),
                        'tag_num': tag.count(),
-                       'categorys': category})
+                       'categorys': category,
+                       'tags': tag})

@@ -1,7 +1,7 @@
 # _*_encoding:utf-8_*_
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 
@@ -19,7 +19,8 @@ class BlogDescView(View):
                        'blog_num': blogs.count(),
                        'category_num': category.count(),
                        'tag_num': tag.count(),
-                       'categorys': category})
+                       'categorys': category,
+                       'tags': tag})
 
 
 def add_click(request):
@@ -31,7 +32,7 @@ def add_click(request):
 
 
 class ArchiveView(View):
-    def get(self,request):
+    def get(self, request):
         blogs = Blog.objects.all().order_by('-add_time')
         try:
             page = request.GET.get('page', 1)
@@ -47,4 +48,29 @@ class ArchiveView(View):
         blog = Blog.objects.all()
         category = Category.objects.all()
         tag = Tags.objects.all()
-        return render(request,'archive.html',{'blogs':blogs})
+        return render(request, 'archive.html',
+                      {'blogs': blogs,
+                       'blog_num': blog.count(),
+                       'category_num': category.count(),
+                       'tag_num': tag.count(),
+                       'categorys': category,
+                       'tags': tag})
+
+
+class CategoryAndTagView(View):
+    def get(self, request, categoryId):
+        categoryed = Category.objects.get(id=categoryId)
+        bloged = Blog.objects.filter(category__id=categoryId)
+
+        blog = Blog.objects.all()
+        category = Category.objects.all()
+        tag = Tags.objects.all()
+        return render(request, 'category.html',
+                      {'blog_num': blog.count(),
+                       'category_num': category.count(),
+                       'tag_num': tag.count(),
+                       'categorys': category,
+                       'tags': tag,
+                       'type': 1,
+                       'categoryed': categoryed,
+                       'bloged': bloged})
